@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "description": "WonderHub - Il tuo Hub Digitale per il Business"
+  },
+  "common": {
+    "login": "Accedi",
+    "register": "Registrati",
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Termini di Servizio",
+      "contact": "Contattaci",
+      "rights": "Tutti i diritti riservati."
+    }
+  },
+  "home": {
+    "welcome": "Benvenuto su WonderHub",
+    "subtitle": "Il tuo Hub Digitale per il Business"
+  }
+}

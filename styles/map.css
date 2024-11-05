@@ -1,0 +1,33 @@
+/* MapLibre GL Styles */
+.maplibregl-map {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+.maplibregl-marker {
+  width: 24px;
+  height: 24px;
+  background-color: hsl(var(--primary));
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.maplibregl-popup {
+  max-width: 200px;
+}
+
+.maplibregl-popup-content {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.maplibregl-popup-close-button {
+  padding: 0.5rem;
+  color: hsl(var(--foreground));
+}

@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "description": "WonderHub - Your Digital Business Hub"
+  },
+  "common": {
+    "login": "Login",
+    "register": "Register",
+    "footer": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "contact": "Contact Us",
+      "rights": "All rights reserved."
+    }
+  },
+  "home": {
+    "welcome": "Welcome to WonderHub",
+    "subtitle": "Your Digital Business Hub"
+  }
+}
