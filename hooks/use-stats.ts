@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 
 interface Stats {
   totalProperties: number;
@@ -13,6 +13,7 @@ interface Stats {
 export function useStats() {
   const [data, setData] = useState<Stats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const supabase = createClient();
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -45,7 +46,7 @@ export function useStats() {
     };
 
     fetchStats();
-  }, []);
+  }, [supabase]);
 
   return { data, isLoading };
 }

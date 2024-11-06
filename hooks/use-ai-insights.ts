@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 
 interface Insight {
   title: string;
@@ -12,6 +12,7 @@ interface Insight {
 export function useAIInsights() {
   const [insights, setInsights] = useState<Insight[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const supabase = createClient();
 
   useEffect(() => {
     const fetchInsights = async () => {
@@ -61,7 +62,7 @@ export function useAIInsights() {
     };
 
     fetchInsights();
-  }, []);
+  }, [supabase]);
 
   return { insights, isLoading };
 }

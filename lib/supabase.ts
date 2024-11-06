@@ -1,17 +1,17 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// This file is deprecated and should not be used.
+// Use lib/supabase/client.ts for browser clients
+// and lib/supabase/server.ts for server components instead.
+export { createClient as supabase } from './supabase/client';
 
 export const getUser = async () => {
-  const { data: { user }, error } = await supabase.auth.getUser();
+  const client = createClient();
+  const { data: { user }, error } = await client.auth.getUser();
   if (error) throw error;
   return user;
 };
 
 export const signOut = async () => {
-  const { error } = await supabase.auth.signOut();
+  const client = createClient();
+  const { error } = await client.auth.signOut();
   if (error) throw error;
 };

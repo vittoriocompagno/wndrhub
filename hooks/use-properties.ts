@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 
 interface Property {
   id: string;
@@ -18,6 +18,7 @@ export function useProperties() {
   const [data, setData] = useState<Property[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const supabase = createClient();
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -43,7 +44,7 @@ export function useProperties() {
     };
 
     fetchProperties();
-  }, []);
+  }, [supabase]);
 
   return { data, isLoading, error };
 }

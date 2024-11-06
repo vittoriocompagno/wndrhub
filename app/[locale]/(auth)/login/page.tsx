@@ -30,12 +30,12 @@ export default function LoginPage() {
     try {
       const supabase = createClient();
       
-      const { error } = await supabase.auth.signInWithPassword({
+      const { error: signInError } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password,
       });
 
-      if (error) throw error;
+      if (signInError) throw signInError;
 
       // Wait for session to be established
       const { data: { session } } = await supabase.auth.getSession();
@@ -49,6 +49,9 @@ export default function LoginPage() {
         description: "You've been logged in successfully.",
       });
 
+      // Force a router refresh to update the auth state
+      router.refresh();
+      
       // Use replace instead of push to prevent back navigation
       router.replace("/dashboard");
     } catch (error: any) {

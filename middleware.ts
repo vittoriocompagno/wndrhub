@@ -3,10 +3,28 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-  const res = NextResponse.next();
-  const supabase = createMiddlewareClient({ req: request, res });
-
   try {
+    // Create a response first
+    const res = NextResponse.next();
+
+    // Create the Supabase client
+    const supabase = createMiddlewareClient(
+      { 
+        req: request, 
+        res 
+      },
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      }
+    );
+
+    // Refresh session if expired - required for Server Components
+    await supabase.auth.getSession();
+
     const {
       data: { session },
     } = await supabase.auth.getSession();
@@ -30,6 +48,7 @@ export async function middleware(request: NextRequest) {
     return res;
   } catch (error) {
     console.error('Middleware error:', error);
+    // In case of error, redirect to login
     return NextResponse.redirect(new URL('/login', request.url));
   }
 }

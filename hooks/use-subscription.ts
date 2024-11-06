@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 
 interface SubscriptionData {
   tier: "FREE" | "PRO" | "PREMIUM";
@@ -13,6 +15,8 @@ export function useSubscription(): SubscriptionData {
     isTrialActive: true,
     trialDaysLeft: 14,
   });
+
+  const supabase = createClient();
 
   useEffect(() => {
     const fetchSubscription = async () => {
@@ -49,7 +53,7 @@ export function useSubscription(): SubscriptionData {
     };
 
     fetchSubscription();
-  }, []);
+  }, [supabase]);
 
   return subscriptionData;
 }
